@@ -9,13 +9,13 @@ title: "Logistic"
 - **Formula:**  
 
 - **Usage:** Transforms any real-valued number into a probability between 0 and 1.
-- **Interpretation:** $x$ often represents a linear combination of predictors, i.e., $x = \beta_0 + \beta_1x_1 + \ldots + \beta_nx_n$.
+- **Interpretation:** x often represents a linear combination of predictors, i.e., x = \beta_0 + \beta_1x_1 + \ldots + \beta_nx_n.
 
 #### 2. ROC (Receiver Operating Characteristic)
 - **Definition:**  
   A plot of True Positive Rate (TPR) vs. False Positive Rate (FPR) across various threshold settings.
-- **TPR (Sensitivity):** $\frac{TP}{TP + FN}$
-- **FPR:** $\frac{FP}{FP + TN}$
+- **TPR (Sensitivity):** \frac{TP}{TP + FN}
+- **FPR:** \frac{FP}{FP + TN}
 - **Usage:** Visual tool to assess the discrimination ability of the model across thresholds.
 
 #### 3. AUC (Area Under the ROC Curve)
@@ -24,7 +24,7 @@ title: "Logistic"
 - **Interpretation:**  
   AUC = 1 indicates perfect discrimination; 0.5 indicates no discrimination (random guess).
 - **Relation to Gini:**  
-  $\text{Gini} = 2 \times \text{AUC} - 1$
+  \text{Gini} = 2 \times \text{AUC} - 1
 
 #### 4. Confusion Matrix
 - **Structure:**
@@ -34,10 +34,10 @@ title: "Logistic"
   | Actual Negative| False Positive (FP)| True Negative (TN) |
 
 - **Metrics Derived:**
-  - **Accuracy:** $\frac{TP+TN}{TP+TN+FP+FN}$
-  - **Precision:** $\frac{TP}{TP+FP}$
-  - **Recall (Sensitivity):** $\frac{TP}{TP+FN}$
-  - **Specificity:** $\frac{TN}{TN+FP}$
+  - **Accuracy:** \frac{TP+TN}{TP+TN+FP+FN}
+  - **Precision:** \frac{TP}{TP+FP}
+  - **Recall (Sensitivity):** \frac{TP}{TP+FN}
+  - **Specificity:** \frac{TN}{TN+FP}
 
 #### 5. Gini Coefficient
 - **Formula:**  
