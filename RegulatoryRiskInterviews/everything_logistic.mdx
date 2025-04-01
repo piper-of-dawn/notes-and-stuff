@@ -1,0 +1,70 @@
+### Logistic PD Modelling Cheatsheet
+
+#### 1. Logistic Function
+- **Formula:**  
+
+  $$ P(x) = \frac{1}{1 + e^{-x}} $$
+
+- **Usage:** Transforms any real-valued number into a probability between 0 and 1.
+- **Interpretation:** $x$ often represents a linear combination of predictors, i.e., $x = \beta_0 + \beta_1x_1 + \ldots + \beta_nx_n$.
+
+#### 2. ROC (Receiver Operating Characteristic)
+- **Definition:**  
+  A plot of True Positive Rate (TPR) vs. False Positive Rate (FPR) across various threshold settings.
+- **TPR (Sensitivity):** $\frac{TP}{TP + FN}$
+- **FPR:** $\frac{FP}{FP + TN}$
+- **Usage:** Visual tool to assess the discrimination ability of the model across thresholds.
+
+#### 3. AUC (Area Under the ROC Curve)
+- **Definition:**  
+  Measures the overall ability of the model to rank predictions correctly.
+- **Interpretation:**  
+  AUC = 1 indicates perfect discrimination; 0.5 indicates no discrimination (random guess).
+- **Relation to Gini:**  
+  $\text{Gini} = 2 \times \text{AUC} - 1$
+
+#### 4. Confusion Matrix
+- **Structure:**
+  |                | Predicted Positive | Predicted Negative |
+  |----------------|--------------------|--------------------|
+  | Actual Positive| True Positive (TP) | False Negative (FN)|
+  | Actual Negative| False Positive (FP)| True Negative (TN) |
+- **Metrics Derived:**
+  - **Accuracy:** $\frac{TP+TN}{TP+TN+FP+FN}$
+  - **Precision:** $\frac{TP}{TP+FP}$
+  - **Recall (Sensitivity):** $\frac{TP}{TP+FN}$
+  - **Specificity:** $\frac{TN}{TN+FP}$
+
+#### 5. Gini Coefficient
+- **Formula:**  
+  $\text{Gini} = 2 \times \text{AUC} - 1$
+- **Usage:** Commonly used in credit scoring to measure discriminatory power.
+- **Interpretation:**  
+  Higher values indicate better discriminatory power.
+
+#### 6. Pitfalls and Metric Tricks
+- **Threshold Sensitivity:**  
+  - Choice of threshold in logistic regression can shift confusion matrix metrics drastically.
+- **Imbalanced Data:**  
+  - Accuracy may be misleading; high accuracy can hide poor performance on the minority class.
+  - ROC/AUC can overstate model performance if the class distribution is skewed.
+- **Calibration vs. Discrimination:**  
+  - A model with high AUC may still be poorly calibrated, meaning predicted probabilities do not reflect true risks.
+- **Overfitting:**  
+  - High in-sample performance (AUC, Gini) might not generalize to out-of-sample data.
+- **Metric Interdependencies:**  
+  - Gini and AUC are mathematically linked; improvements in one directly affect the other.
+- **Business Impact Misalignment:**  
+  - Metrics can be “tricked” by models that optimize statistical performance but ignore cost-sensitive implications (e.g., false negatives in credit defaults).
+
+#### 7. Additional Considerations
+- **Log-Loss:**  
+  - Measures the uncertainty of your predictions. Lower log-loss indicates better calibrated probabilities.
+- **Calibration Plots:**  
+  - Visual tools to assess how predicted probabilities align with observed outcomes.
+- **Cross-Validation:**  
+  - Essential for verifying model stability and avoiding overfitting.
+- **Regularization:**  
+  - Techniques (e.g., L1, L2) to prevent overfitting, especially in high-dimensional data.
+
+This cheatsheet covers core concepts for modelling PD using logistic regression, along with critical validation metrics and common pitfalls. Use it as a quick reference to keep your interview responses sharp and focused.
