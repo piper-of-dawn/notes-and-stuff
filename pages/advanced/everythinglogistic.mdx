@@ -8,8 +8,6 @@ title: "Logistic"
 
 - **Formula:**  
 
-{/* P(x) = \frac{1}{1 + e^{-x}}  */}
-
 - **Usage:** Transforms any real-valued number into a probability between 0 and 1.
 - **Interpretation:** $x$ often represents a linear combination of predictors, i.e., $x = \beta_0 + \beta_1x_1 + \ldots + \beta_nx_n$.
 
@@ -34,6 +32,7 @@ title: "Logistic"
   |----------------|--------------------|--------------------|
   | Actual Positive| True Positive (TP) | False Negative (FN)|
   | Actual Negative| False Positive (FP)| True Negative (TN) |
+
 - **Metrics Derived:**
   - **Accuracy:** $\frac{TP+TN}{TP+TN+FP+FN}$
   - **Precision:** $\frac{TP}{TP+FP}$
@@ -42,7 +41,6 @@ title: "Logistic"
 
 #### 5. Gini Coefficient
 - **Formula:**  
-  $\text{Gini} = 2 \times \text{AUC} - 1$
 - **Usage:** Commonly used in credit scoring to measure discriminatory power.
 - **Interpretation:**  
   Higher values indicate better discriminatory power.
