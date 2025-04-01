@@ -1,0 +1,51 @@
+---
+title: "Everything PD"
+---
+
+
+Below is a table combining the **Cumulative PD**, **Marginal PD**, **Survival Probability**, and **Point-in-Time (PIT) PD** for the fake amortization schedule from the previous example, with formulas included in the headers. Following the table, I’ll provide a concise two-line description for each metric.
+
+---
+
+### **Table: PD Metrics with Formulas**
+
+| **Year** | **PIT PD** (Annual PD at t) | **Survival Probability** S(t) = ∏(1 - PIT PDᵢ) for i=1 to t | **Cumulative PD** 1 - S(t) | **Marginal PD** CumPD(t) - CumPD(t-1) |
+|----------|-------------------------------|-------------------------------------------------------------|----------------------|-----------------------------------------|
+| 1        | 1.0%                         | (1 - 0.01) = 0.9900                                        | 1 - 0.9900 = 1.00%   | 1.00%                           |
+| 2        | 1.5%                         | 0.9900 × (1 - 0.015) = 0.97515                            | 1 - 0.97515 = 2.485% | 2.485% - 1.00% = 1.485%         |
+| 3        | 2.0%                         | 0.97515 × (1 - 0.02) = 0.95565                            | 1 - 0.95565 = 4.435% | 4.435% - 2.485% = 1.95%         |
+| 4        | 2.5%                         | 0.95565 × (1 - 0.025) = 0.93176                           | 1 - 0.93176 = 6.824% | 6.824% - 4.435% = 2.389%        |
+| 5        | 3.0%                         | 0.93176 × (1 - 0.03) = 0.90381                            | 1 - 0.90381 = 9.619% | 9.619% - 6.824% = 2.795%        |
+
+---
+
+### **Descriptions of Each Metric**
+
+#### **PIT PD (Point-in-Time PD)**
+- **Definition:** The probability of default over the next year, reflecting current economic conditions at the start of each period.
+- **Use:** Used for real-time risk assessment, loan pricing, and provisioning, sensitive to short-term economic changes.
+
+#### **Survival Probability**
+- **Definition:** The probability that the borrower does not default up to a given year, calculated as the product of annual survival rates (1 - PIT PD).
+- **Use:** Forms the foundation for cumulative and marginal PDs, essential for modeling long-term credit risk.
+
+#### **Cumulative PD**
+- **Definition:** The total probability of default from the start of the loan up to a specific year, derived as 1 minus the survival probability.
+- **Use:** Measures overall default risk over time, critical for portfolio-level analysis and regulatory reporting.
+
+#### **Marginal PD**
+- **Definition:** The incremental probability of default in a specific year, conditional on survival up to that year, calculated as the difference in consecutive cumulative PDs.
+- **Use:** Enables year-by-year expected loss calculations, supporting granular risk management and capital allocation.
+
+---
+
+Through-the-Cycle (TTC) PD is calculated by estimating a long-term average default probability that smooths out economic cycle fluctuations, reflecting a borrower’s intrinsic risk over time. Here’s a concise explanation of the process:
+
+1. **Collect Historical Data:** Gather default rates for a borrower or similar cohort (e.g., industry, rating) over a long period (10-20 years), spanning multiple economic cycles.
+2. **Average Default Rates:** Compute the mean annual default rate across this period, neutralizing peaks (booms) and troughs (recessions).
+3. **Adjust for Stability:** Optionally, use statistical methods (e.g., regression, smoothing) to strip out cyclical effects, focusing on structural risk factors (e.g., leverage, industry).
+4. **Calibration:** Map the result to a rating or PD scale, ensuring consistency with observed long-term defaults (e.g., Basel IRB calibration).
+
+**Example:** If annual default rates for a firm’s rating bucket were 0.5%, 1%, 2%, 0.8%, and 1.5% over 5 years, TTC PD might be approximated as the average (1.16%), adjusted to reflect cycle-independent risk.
+
+**Key Point:** TTC PD is less volatile than PIT PD, making it ideal for regulatory capital purposes (e.g., Basel), as it avoids procyclicality.

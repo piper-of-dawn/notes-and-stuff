@@ -1,0 +1,120 @@
+---
+title: "Default Modelling"
+---
+
+Modeling the Probability of Default (PD) for a corporate borrower is a critical component of wholesale credit risk management. Below, I’ll provide a structured explanation of the process, tailored to a senior-level understanding, with clear steps and considerations you can use to demonstrate expertise in your interview.
+
+---
+
+### **1. Define Probability of Default (PD)**
+- **What it is:** PD represents the likelihood that a corporate borrower will default on its debt obligations over a specific time horizon (e.g., 1 year).
+- **Context:** It’s a key input in credit risk models, such as Basel II/III frameworks, internal ratings-based (IRB) approaches, and expected loss calculations (EL = PD × LGD × EAD).
+- **Objective:** Accurately estimate PD to assess risk, set capital reserves, and price loans.
+
+---
+
+### **2. Choose a Modeling Approach**
+There are several established methodologies to model PD. Select based on data availability, regulatory requirements, and the firm’s risk appetite. Common approaches include:
+
+#### **A. Statistical Models (Scorecard-Based)**
+- **Description:** Use historical data to build a logistic regression or similar model.
+- **Inputs:** Financial ratios, qualitative factors, and macroeconomic variables.
+- **Process:**
+  1. Collect data on past defaults and non-defaults.
+  2. Identify predictive variables (e.g., leverage, interest coverage, cash flow).
+  3. Fit a model (e.g., logit: PD = 1 / (1 + e^(-z)), where z = β₀ + β₁X₁ + ... + βₙXₙ).
+  4. Validate using metrics like AUC (Area Under the Curve) or Gini coefficient.
+
+#### **B. Structural Models (Merton Model)**
+- **Description:** Based on option pricing theory, where default occurs if the firm’s asset value falls below its debt obligations.
+- **Inputs:** Market data (equity value, volatility), balance sheet data (debt levels).
+- **Process:**
+  1. Estimate asset value and volatility using equity as a call option on assets.
+  2. Calculate the distance to default (DD = (Asset Value - Debt) / Asset Volatility).
+  3. Map DD to PD using a normal distribution assumption.
+
+#### **C. Expert Judgment (Rating-Based)**
+- **Description:** Assign internal credit ratings based on qualitative and quantitative factors, then map ratings to PD using historical default rates.
+- **Inputs:** Analyst assessments, industry trends, financial metrics.
+- **Process:** Calibrate PDs to observed default frequencies per rating bucket.
+
+#### **D. Machine Learning Models**
+- **Description:** Use advanced techniques (e.g., random forests, neural networks) for higher predictive power.
+- **Inputs:** Large datasets including non-linear relationships and unstructured data.
+- **Process:** Train and test the model, ensuring interpretability for regulatory compliance.
+
+---
+
+### **3. Gather and Prepare Data**
+- **Financial Data:**
+  - Balance sheet (e.g., debt-to-equity, liquidity ratios).
+  - Income statement (e.g., EBITDA, interest coverage).
+  - Cash flow statement (e.g., free cash flow).
+- **Market Data:**
+  - Stock price volatility, CDS spreads (if available).
+- **Macroeconomic Variables:**
+  - GDP growth, interest rates, industry-specific indices.
+- **Qualitative Factors:**
+  - Management quality, competitive position, regulatory environment.
+- **Data Quality:** Ensure completeness, consistency, and relevance. Address missing data through imputation or exclusion.
+
+---
+
+### **4. Model Development**
+- **Step 1: Variable Selection**
+  - Use statistical tests (e.g., p-values, correlation analysis) or domain expertise to select predictors.
+  - Avoid multicollinearity (e.g., check VIF - Variance Inflation Factor).
+- **Step 2: Model Calibration**
+  - Fit the model to historical data (e.g., 5-10 years of default history).
+  - Adjust for economic cycles (point-in-time vs. through-the-cycle PD).
+- **Step 3: Output**
+  - PD as a percentage (e.g., 2% annual default probability).
+  - Ensure granularity (e.g., by industry, size, or rating).
+
+---
+
+### **5. Validation and Backtesting**
+- **Validation:**
+  - Split data into training and testing sets.
+  - Assess discriminatory power (e.g., ROC curve) and calibration (e.g., Hosmer-Lemeshow test).
+- **Backtesting:**
+  - Compare predicted PDs to actual default rates over time.
+  - Adjust for overfitting or bias.
+- **Regulatory Compliance:** Ensure alignment with Basel standards or local regulations (e.g., stress testing).
+
+---
+
+### **6. Adjust for Portfolio and Economic Context**
+- **Portfolio Effects:** Account for correlation between borrowers (e.g., industry concentration risk).
+- **Stress Testing:** Simulate PD under adverse scenarios (e.g., recession, rising rates).
+- **Through-the-Cycle (TTC) vs. Point-in-Time (PIT):**
+  - TTC PD: Long-term average, stable across cycles.
+  - PIT PD: Reflects current economic conditions.
+
+---
+
+### **7. Practical Implementation**
+- **Integration:** Embed PD into credit approval, pricing, and capital allocation processes.
+- **Monitoring:** Regularly update PDs based on new financials or market conditions.
+- **Documentation:** Maintain transparency for auditors and regulators.
+
+---
+
+### **Key Considerations for Interview**
+- **Senior-Level Insight:** Highlight trade-offs (e.g., accuracy vs. interpretability in ML models, PIT vs. TTC calibration).
+- **Regulatory Nuances:** Mention Basel IRB requirements (e.g., 0.03% PD floor) or IFRS 9 expected credit loss standards.
+- **Business Impact:** Link PD modeling to loan pricing (e.g., risk-adjusted return on capital) and portfolio management.
+
+---
+
+### **Example Walkthrough**
+Suppose you’re modeling PD for a manufacturing firm:
+1. **Data:** Debt/EBITDA = 4x, interest coverage = 2x, GDP growth = 1%.
+2. **Approach:** Logistic regression.
+3. **Model:** PD = 1 / (1 + e^(-(β₀ + β₁×Debt/EBITDA + β₂×Interest Coverage + β₃×GDP))).
+4. **Calibration:** Historical data shows a 3% default rate for similar firms; tweak coefficients accordingly.
+5. **Result:** PD = 2.5% (1-year horizon).
+
+---
+
+This structured approach demonstrates technical depth and practical application—perfect for a senior role. Feel free to ask for more details or a mock interview question! Good luck!
