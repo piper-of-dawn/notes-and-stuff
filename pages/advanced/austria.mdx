@@ -1,33 +1,76 @@
 ---
-title: "Austria"
+title: "Logistic"
 ---
 
+### Logistic PD Modelling Cheatsheet
 
-| Date       | Place    | Night Stay |
-| ---------- | -------- | ---------- |
-| 20/07/2024 | Wien     | Y          |
-| 21/07/2024 | Hallstat | Y          |
-| 22/07/2024 | Wien     | N          |
+#### 1. Logistic Function
+- **Formula:**  
+  P(x) = 1 / (1 + e^(-x))
+- **Usage:** Transforms any real-valued number into a probability between 0 and 1.
+- **Interpretation:** x often represents a linear combination of predictors, i.e., x = β₀ + β₁x₁ + ... + βₙxₙ.
 
+#### 2. ROC (Receiver Operating Characteristic)
+- **Definition:**  
+  A plot of True Positive Rate (TPR) vs. False Positive Rate (FPR) across various threshold settings.
+- **TPR (Sensitivity):** TP / (TP + FN)
+- **FPR:** FP / (FP + TN)
+- **Usage:** Visual tool to assess the discrimination ability of the model across thresholds.
 
+#### 3. AUC (Area Under the ROC Curve)
+- **Definition:**  
+  Measures the overall ability of the model to rank predictions correctly.
+- **Interpretation:**  
+  AUC = 1 indicates perfect discrimination; 0.5 indicates no discrimination (random guess).
+- **Relation to Gini:**  
+  Gini = 2 × AUC - 1
 
-## TODO:
-1. Search a good Airbnb at Wien near Railway station
+#### 4. Confusion Matrix
+- **Structure:**
+  |                | Predicted Positive | Predicted Negative |
+  |----------------|--------------------|--------------------|
+  | Actual Positive| True Positive (TP) | False Negative (FN)|
+  | Actual Negative| False Positive (FP)| True Negative (TN) |
+- **Metrics Derived:**
+  - **Accuracy:** (TP + TN) / (TP + TN + FP + FN)
+  - **Precision:** TP / (TP + FP)
+  - **Recall (Sensitivity):** TP / (TP + FN)
+  - **Specificity:** TN / (TN + FP)
 
-#### Important Links
-1. https://shop.wienmobil.at/ - Buy public transport tickets
-2. Austrian Railway Train Tickets: https://www.oebb.at/en/
-3. Good Hotel at HallStat: [HERE](https://www.booking.com/hotel/at/pension-simony.en-gb.html?aid=356980&label=gog235jc-1BCAMoDkIJaGFsbHN0YXR0SDNYA2i2AYgBAZgBHrgBF8gBDNgBAegBAYgCAagCA7gChqH6swbAAgHSAiRhMzZmODhkMC1mYzhjLTQwOWEtYTNiZS05MWJjMjk5OWRkZDnYAgXgAgE&sid=138a137805f84c848747aeb8309bc142&all_sr_blocks=71441209_327217074_2_1_0;checkin=2024-07-21;checkout=2024-07-22;dest_id=-1979686;dest_type=city;dist=0;group_adults=2;group_children=0;hapos=1;highlighted_blocks=71441209_327217074_2_1_0;hpos=1;matching_block_id=71441209_327217074_2_1_0;nflt=price%3DPLN-min-600-1;no_rooms=1;req_adults=2;req_children=0;room1=A%2CA;sb_price_type=total;sr_order=popularity;sr_pri_blocks=71441209_327217074_2_1_0__13000;srepoch=1719570783;srpvid=52994a22839c01ec;type=total;ucfs=1&#map_closed) 
+#### 5. Gini Coefficient
+- **Formula:**  
+  Gini = 2 × AUC - 1
+- **Usage:** Commonly used in credit scoring to measure discriminatory power.
+- **Interpretation:**  
+  Higher values indicate better discriminatory power.
 
+#### 6. Pitfalls and Metric Tricks
+- **Threshold Sensitivity:**  
+  - Choice of threshold in logistic regression can shift confusion matrix metrics drastically.
+- **Imbalanced Data:**  
+  - Accuracy may be misleading; high accuracy can hide poor performance on the minority class.
+  - ROC/AUC can overstate model performance if the class distribution is skewed.
+- **Calibration vs. Discrimination:**  
+  - A model with high AUC may still be poorly calibrated, meaning predicted probabilities do not reflect true risks.
+- **Overfitting:**  
+  - High in-sample performance (AUC, Gini) might not generalize to out-of-sample data.
+- **Metric Interdependencies:**  
+  - Gini and AUC are mathematically linked; improvements in one directly affect the other.
+- **Business Impact Misalignment:**  
+  - Metrics can be “tricked” by models that optimize statistical performance but ignore cost-sensitive implications (e.g., false negatives in credit defaults).
 
-## APPENDIX
+#### 7. Additional Considerations
+- **Log-Loss:**  
+  - Measures the uncertainty of your predictions. Lower log-loss indicates better calibrated probabilities.
+- **Calibration Plots:**  
+  - Visual tools to assess how predicted probabilities align with observed outcomes.
+- **Cross-Validation:**  
+  - Essential for verifying model stability and avoiding overfitting.
+- **Regularization:**  
+  - Techniques (e.g., L1, L2) to prevent overfitting, especially in high-dimensional data.
 
-#### Airport Transfer Information
+This cheatsheet covers core concepts for modelling PD using logistic regression, along with critical validation metrics and common pitfalls. Use it as a quick reference to keep your interview responses sharp and focused.
 
-The Vienna Airport Lines take you quickly, directly and comfortably from Vienna Airport to the city centre or the Danube City and back.
+--- 
 
-Three express lines pick you up daily from various Viennese districts. Our buses stop at 11 stations with underground connections. Also take advantage of our night services on Vienna Airport Line 2 (Morzinplatz/ Schwedenplatz).
-
-- **VAL 1:** [Line VAL 1](https://www.viennaairportlines.at/en/dam/jcr:04733850-c7b2-42f8-b22d-0b41908ce56c/fahrplan-val1-03072023.pdf) line runs around the clock from Vienna West Station via Vienna Central Station (South Entrance) to Vienna Airport. The intervals are 30 minutes, except between 00:30 a.m. and 02:30 a.m. Between these times there is only one bus at 01:30 a.m.
-- **VAL 2:** [Line VAL 2](https://www.viennaairportlines.at/en/dam/jcr:5d011ed6-5969-4740-9a31-fad7353a255a/val2_02102023.pdf) line runs from Morzinplatz/ Schwedenplatz to Vienna Airport every half hour from 03:30 a.m. to 11:30 p.m.
-- **VAL 3:** [Line VAL 3](https://www.viennaairportlines.at/en/dam/jcr:6cd82e33-f107-4471-8b32-9d1b5f2e3fdf/fahrplan-val3-01032024.pdf) line connects Donaustadt with Vienna Airport. The Vienna Airport Lines stop at the stations: Donauzentrum - Kagraner Brücke - Hotel NH Danube City - Kaisermühlen/VIC (Austria Center) - Krieau (Messe Wien) - Stadion - Donaumarina - Vienna Airport. Line VAL 3 runs every hour between 04:58 a.m. and 07:58 p.m. between Donauzentrum and Vienna Airport.
+Let me know if you'd like any further adjustments!
