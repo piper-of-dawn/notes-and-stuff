@@ -1,0 +1,91 @@
+---
+title: OLS Assumptions
+---
+
+To estimate a linear regression through ordinary least squares (OLS), several assumptions must be made to ensure that the estimator is unbiased, consistent, and efficient. These assumptions can be categorized into three groups: assumptions on the sample, assumptions on the model specification, and assumptions on the errors. Below, I list all the key assumptions and organize them into the requested silos, with mathematical expressions wrapped in triple backticks for display math and double dollar signs for inline math.
+
+---
+
+### 1. Assumptions on the Sample
+
+These assumptions pertain to the properties of the data used in the regression.
+
+- **No Perfect Multicollinearity**: The design matrix containing the explanatory variables, denoted $X$, must have full column rank. This means that the explanatory variables are not perfectly linearly dependent on each other. Mathematically, the matrix $X$ (an $n \times k$ matrix, where $n$ is the number of observations and $k$ is the number of explanatory variables including the intercept) must satisfy:
+
+  ```math
+  \text{rank}(X) = k
+  ```
+
+  This ensures that the OLS estimator can be uniquely computed. If perfect multicollinearity exists, the matrix $X^T X$ becomes singular, and the OLS solution $\hat{\beta} = (X^T X)^{-1} X^T y$ cannot be calculated.
+
+---
+
+### 2. Assumptions on Model Specification
+
+These assumptions relate to how the regression model is defined and the relationship between the variables.
+
+- **Linearity in Parameters**: The relationship between the dependent variable $y$ and the explanatory variables $X$ is linear in the parameters. The model is specified as:
+
+  ```math
+  y = X\beta + \epsilon
+  ```
+
+  where $y$ is the $n \times 1$ vector of the dependent variable, $X$ is the $n \times k$ matrix of explanatory variables, $\beta$ is the $k \times 1$ vector of coefficients, and $\epsilon$ is the $n \times 1$ vector of error terms.
+
+- **Strict Exogeneity**: The explanatory variables are exogenous with respect to the errors, meaning that the expected value of the error term conditional on the explanatory variables is zero:
+
+  ```math
+  E(\epsilon | X) = 0
+  ```
+
+  This assumption ensures that the explanatory variables do not contain information about the errors, implying that the model is correctly specified and there are no omitted variables correlated with $X$ that affect $y$. Together with the linearity assumption, this implies that the conditional expectation of $y$ given $X$ is $E(y | X) = X\beta$.
+
+---
+
+### 3. Assumptions on Errors
+
+These assumptions describe the properties of the error terms in the regression model.
+
+- **Homoscedasticity**: The variance of the errors is constant across all observations, conditional on the explanatory variables. For each observation $i$, this is expressed as:
+
+  ```math
+  \text{Var}(\epsilon_i | X) = \sigma^2
+  ```
+
+  where $\sigma^2$ is a positive constant. This means that the spread of the errors does not vary with the levels of the explanatory variables.
+
+- **No Autocorrelation**: The errors are uncorrelated with each other across different observations, conditional on the explanatory variables. Mathematically, for all $i \neq j$:
+
+  ```math
+  \text{Cov}(\epsilon_i, \epsilon_j | X) = 0
+  ```
+
+  This assumption ensures that there is no systematic relationship between the errors of different observations, which is often reasonable in cross-sectional data but may not hold in time series data.
+
+- **Normality (Optional)**: For the purposes of statistical inference (e.g., hypothesis testing and constructing confidence intervals), the errors are sometimes assumed to be normally distributed, conditional on the explanatory variables:
+
+  ```math
+  \epsilon | X \sim N(0, \sigma^2 I)
+  ```
+
+  Here, $I$ is the $n \times n$ identity matrix, indicating that the errors have a mean of zero and a variance-covariance matrix of $\sigma^2 I$. While this assumption is not required for the OLS estimator to be unbiased or consistent, it is necessary for the standard $t$-tests and $F$-tests to be valid in small samples under the classical linear regression model.
+
+---
+
+### Summary
+
+The assumptions for estimating a linear regression through OLS can be summarized as follows:
+
+1. **Assumptions on the Sample**:
+   - The design matrix $X$ has full column rank (no perfect multicollinearity).
+
+2. **Assumptions on Model Specification**:
+   - The model is linear: $y = X\beta + \epsilon$.
+   - Strict exogeneity: $E(\epsilon | X) = 0$.
+
+3. **Assumptions on Errors**:
+   - Homoscedasticity: $\text{Var}(\epsilon_i | X) = \sigma^2$ for all $i$.
+   - No autocorrelation: $\text{Cov}(\epsilon_i, \epsilon_j | X) = 0$ for $i \neq j$.
+   - (Optional) Normality: $\epsilon | X \sim N(0, \sigma^2 I)$.
+
+These assumptions collectively form the foundation of the Gauss-Markov theorem, which states that if the assumptions on the sample, linearity, strict exogeneity, homoscedasticity, and no autocorrelation hold, the OLS estimator is the Best Linear Unbiased Estimator (BLUE). The normality assumption enhances this framework by enabling exact inference in finite samples.

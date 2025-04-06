@@ -1,0 +1,39 @@
+---
+title: Logistic Regression
+---
+
+## Logistic Function
+
+
+## Estimation
+
+To estimate logistic regression using maximum likelihood, we follow these steps:
+
+1. **Model the Probability**:  
+   For each observation $i$, the probability that $y_i = 1$ (given features $x_i$) is:  
+
+   ```math
+   p_i = \frac{1}{1 + e^{-\theta^T x}_i}
+   ```
+   where $\theta$ are the coefficients.
+
+2. **Write the Likelihood**:  
+   The likelihood of observing all outcomes $y= \{y_1, y_2, ..., y_n\}$ is the product of individual probabilities:  
+   ```math
+   L(\theta) = \prod_{i=1}^n p_i^{y_i} (1 - p_i)^{1 - y_i}
+   ```
+
+3. **Take the Log (Simplifies Calculations)**:  
+   Convert the product into a sum using the natural log:  
+   ```math
+   \ell(\theta) = \sum_{i=1}^n \left[ y_i \ln(p_i) + (1 - y_i) \ln(1 - p_i) \right]
+   ```
+
+4. **Maximize the Log-Likelihood**:  
+   Find the coefficients $\theta$ that **maximize** $\ell(\theta)$. This is done using optimization algorithms (like **gradient ascent** or **Newton-Raphson**), because there’s no formula to solve it directly.
+
+5. **Result**:  
+   The optimal $\theta$ makes the predicted probabilities $p_i$ as close as possible to the actual outcomes $y_i$.
+
+**Key Intuition**:  
+We adjust $\theta$ until the model’s predictions align *best* with the observed data.

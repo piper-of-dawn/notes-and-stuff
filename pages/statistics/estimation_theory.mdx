@@ -1,0 +1,22 @@
+---
+Estimation Theory
+---
+
+Consistency in terms of **Mean Squared Error (MSE)** means:
+
+```math
+\lim_{n \to \infty} \text{MSE}(\hat{\theta}_n) = 0
+```
+
+Since:
+
+```math
+\text{MSE}(\hat{\theta}_n) = \operatorname{Var}(\hat{\theta}_n) + \left[\operatorname{Bias}(\hat{\theta}_n)\right]^2
+```
+
+Both variance and bias must vanish asymptotically:
+
+- $\operatorname{Var}(\hat{\theta}_n) \to 0$
+- $\operatorname{Bias}(\hat{\theta}_n) \to 0$
+
+Thus, MSE → 0 ⇒ estimator is consistent.
